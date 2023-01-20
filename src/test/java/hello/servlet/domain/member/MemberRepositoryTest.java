@@ -47,5 +47,27 @@ class MemberRepositoryTest {
         assertThat(result).contains(member1, member2);
     }
 
+    @Test
+    void DirtyChecking() throws Exception {
+        //given
+        Member member1 = new Member("member1", 20);
+        Member member2 = new Member("member2", 30);
+
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+        //when
+        member1.setAge(21);
+        member2.setAge(31);
+
+        Member findMember1 = memberRepository.findById(member1.getId());
+        Member findMember2 = memberRepository.findById(member2.getId());
+
+        //then
+        assertThat(findMember1.getAge()).isEqualTo(21);
+        assertThat(findMember2.getAge()).isEqualTo(31);
+
+    }
+
+
 
 }
