@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 @Component("/springmvc/old-controller")
 public class OldController implements Controller {
 
-
     @Override
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
         System.out.println("OldController.handleRequest");
-        return null;
+        return new ModelAndView("new-form");
     }
 }
